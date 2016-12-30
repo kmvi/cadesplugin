@@ -17,7 +17,7 @@ async function getCertificatesListAsync(): Promise<void> {
 
     const div = document.getElementById('certs');
     if (div) {
-        for (let i = 1; i < await certificates.Count; ++i) {
+        for (let i = 1; i <= await certificates.Count; ++i) {
             const cert = await certificates.Item(i);
             const elem = document.createElement('p');
             elem.innerText = await cert.Thumbprint;

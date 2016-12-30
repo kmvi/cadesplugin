@@ -38,6 +38,10 @@ declare namespace CAPICOM {
         CAPICOM_CERTIFICATE_FIND_KEY_USAGE: 12;
     }
 
+    interface CAPICOM_HASH_ALGORITHM {
+        
+    }
+
     interface ICertificate {
         Version: number;
         Thumbprint: string;

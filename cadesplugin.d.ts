@@ -4,11 +4,17 @@ declare namespace CADES_Plugin {
     interface ObjectNames {
         'CAPICOM.Store': CAPICOM.Store;
         'CAdESCOM.CPSigner': CAdESCOM.CPSigner;
+        'CAdESCOM.About': CAdESCOM.About;
+        'CAdESCOM.SignedXML': CAdESCOM.SignedXML;
+        'CAdESCOM.HashedData': CAdESCOM.CPHashedData;
     }
 
     interface ObjectNamesAsync {
         'CAPICOM.Store': CAPICOM.StoreAsync;
         'CAdESCOM.CPSigner': CAdESCOM.CPSignerAsync;
+        'CAdESCOM.About': CAdESCOM.AboutAsync;
+        'CAdESCOM.SignedXML': CAdESCOM.SignedXMLAsync;
+        'CAdESCOM.HashedData': CAdESCOM.CPHashedDataAsync;
     }
 
     interface LogLevel {
