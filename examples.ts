@@ -4,8 +4,9 @@ function canAsync(cadesplugin: CADESPlugin): cadesplugin is CADESPluginAsync {
 
 async function getCertificatesListAsync(): Promise<void> {
     const plugin = cadesplugin as CADESPluginAsync;
+    
     await plugin;
-
+    
     const store = await plugin.CreateObjectAsync('CAPICOM.Store');
 
     await store.Open(

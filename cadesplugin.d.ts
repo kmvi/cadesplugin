@@ -7,6 +7,7 @@ declare namespace CADES_Plugin {
         'CAdESCOM.About': CAdESCOM.About;
         'CAdESCOM.SignedXML': CAdESCOM.SignedXML;
         'CAdESCOM.HashedData': CAdESCOM.CPHashedData;
+        'CAdESCOM.CadesSignedData': CAdESCOM.CadesSignedData;
     }
 
     interface ObjectNamesAsync {
@@ -15,6 +16,7 @@ declare namespace CADES_Plugin {
         'CAdESCOM.About': CAdESCOM.AboutAsync;
         'CAdESCOM.SignedXML': CAdESCOM.SignedXMLAsync;
         'CAdESCOM.HashedData': CAdESCOM.CPHashedDataAsync;
+        'CAdESCOM.CadesSignedData': CAdESCOM.CadesSignedDataAsync;
     }
 
     interface LogLevel {
@@ -35,10 +37,8 @@ interface CADESPluginBase extends CAPICOM.StoreLocation, CAPICOM.StoreName,
     getLastError: (exception: Error) => string;
 }
 
-interface CADESPluginAsync extends CADESPluginBase {
+interface CADESPluginAsync extends CADESPluginBase, Promise<never> {
     CreateObjectAsync: <T extends keyof CADES_Plugin.ObjectNamesAsync> (objname: T) => Promise<CADES_Plugin.ObjectNamesAsync[T]>;
-    then(onfulfilled?: ((value: CADESPluginAsync) => undefined) | undefined | null, onrejected?: ((reason: any) => undefined) | undefined | null): CADESPluginAsync;
-    catch(onrejected?: ((reason: any) => undefined) | undefined | null): CADESPluginAsync;
 }
 
 interface CADESPluginSync extends CADESPluginBase {
