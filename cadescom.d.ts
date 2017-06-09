@@ -28,8 +28,8 @@ declare namespace CAdESCOM {
     }
 
     interface CPSignerAsync {
-        Certificate: Promise<CAPICOM.ICertificate>;
-        propset_Certificate(certificate: CAPICOM.ICertificate): Promise<void>;
+        Certificate: Promise<CAPICOM.ICertificateAsync>;
+        propset_Certificate(certificate: CAPICOM.ICertificateAsync): Promise<void>;
     }
 
     interface CadesSignedData {
@@ -102,7 +102,7 @@ declare namespace CAdESCOM {
         Content: string;
         DigestMethod: string;
         SignatureMethod: string;
-        SignatureType: CADESCOM_XML_SIGNATURE_TYPE;
+        SignatureType: ValuesOf<CADESCOM_XML_SIGNATURE_TYPE>;
         Signers: Signers;
     }
 
@@ -115,19 +115,26 @@ declare namespace CAdESCOM {
         propset_DigestMethod(digestMethod: string): Promise<void>;
         SignatureMethod: Promise<string>;
         propset_SignatureMethod(signatureMethod: string): Promise<void>;
-        SignatureType: Promise<CADESCOM_XML_SIGNATURE_TYPE>;
-        propset_SignatureType(signatureType: CADESCOM_XML_SIGNATURE_TYPE): Promise<void>;
+        SignatureType: Promise<ValuesOf<CADESCOM_XML_SIGNATURE_TYPE>>;
+        propset_SignatureType(signatureType: ValuesOf<CADESCOM_XML_SIGNATURE_TYPE>): Promise<void>;
         Signers: Promise<SignersAsync>;
     }
 
     interface CPHashedData {
         Hash(newVal: string): void;
         SetHashValue(newVal: string): void;
-        Algorithm: CAPICOM.CAPICOM_HASH_ALGORITHM;
-        DataEncoding: CADESCOM_CONTENT_ENCODING_TYPE;
+        Algorithm: ValuesOf<CAPICOM.CAPICOM_HASH_ALGORITHM>;
+        DataEncoding: ValuesOf<CADESCOM_CONTENT_ENCODING_TYPE>;
         Value: string;
     }
 
     interface CPHashedDataAsync {
+        Hash(newVal: string): Promise<void>;
+        SetHashValue(newVal: string): Promise<void>;
+        Algorithm: Promise<ValuesOf<CAPICOM.CAPICOM_HASH_ALGORITHM>>;
+        propset_Algorithm(algorithm: ValuesOf<CAPICOM.CAPICOM_HASH_ALGORITHM>): Promise<void>;
+        DataEncoding: Promise<ValuesOf<CADESCOM_CONTENT_ENCODING_TYPE>>;
+        propset_DataEncoding(dataEncoding: ValuesOf<CADESCOM_CONTENT_ENCODING_TYPE>): Promise<void>;
+        Value: Promise<string>;
     }
 }

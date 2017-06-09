@@ -24,10 +24,19 @@ declare namespace CADES_Plugin {
         LOG_LEVEL_INFO: 2;
         LOG_LEVEL_ERROR: 1;
     }
+
+    interface ISignedXmlUrls {
+        XmlDsigGost3410Url: "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34102001-gostr3411";
+        XmlDsigGost3410UrlObsolete: "http://www.w3.org/2001/04/xmldsig-more#gostr34102001-gostr3411";
+        XmlDsigGost3411Url: "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr3411";
+        XmlDsigGost3411UrlObsolete: "http://www.w3.org/2001/04/xmldsig-more#gostr3411";
+    }
 }
 
 interface CADESPluginBase extends CAPICOM.StoreLocation, CAPICOM.StoreName,
-    CAPICOM.StoreOpenMode, CAPICOM.ICertificateFindType, CADES_Plugin.LogLevel {
+    CAPICOM.StoreOpenMode, CAPICOM.ICertificateFindType, CADES_Plugin.LogLevel,
+    CADES_Plugin.ISignedXmlUrls, CAdESCOM.CADESCOM_CONTENT_ENCODING_TYPE,
+    CAdESCOM.CADESCOM_CADES_TYPE {
 
     JSModuleVersion: string;
     current_log_level: number;
@@ -51,4 +60,4 @@ declare module "cadesplugin" {
 
 type CADESPlugin = CADESPluginAsync | CADESPluginSync;
 
-declare var cadesplugin: CADESPlugin;
+declare const cadesplugin: CADESPlugin;

@@ -39,17 +39,25 @@ declare namespace CAPICOM {
     }
 
     interface CAPICOM_HASH_ALGORITHM {
-        
+        CAPICOM_HASH_ALGORITHM_SHA1: 0;
+        CAPICOM_HASH_ALGORITHM_MD2: 1;
+        CAPICOM_HASH_ALGORITHM_MD4: 2;
+        CAPICOM_HASH_ALGORITHM_MD5: 3;
+        CAPICOM_HASH_ALGORITHM_SHA_256: 4;
+        CAPICOM_HASH_ALGORITHM_SHA_384: 5;
+        CAPICOM_HASH_ALGORITHM_SHA_512: 6
     }
 
     interface ICertificate {
         Version: number;
         Thumbprint: string;
+        SubjectName: string;
     }
 
     interface ICertificateAsync {
         Version: Promise<number>;
         Thumbprint: Promise<string>;
+        SubjectName: Promise<string>;
     }
 
     interface ICertificates {
