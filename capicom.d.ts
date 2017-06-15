@@ -62,7 +62,7 @@ declare namespace CAPICOM {
 
     interface ICertificates {
         Count: number;
-        Item: ICertificate[];
+        Item(index: number): ICertificate;
         Find(findType: ValuesOf<ICertificateFindType>, varCriteria?: any, bFindValidOnly?: boolean): ICertificates;
     }
 

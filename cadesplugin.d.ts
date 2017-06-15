@@ -33,8 +33,9 @@ declare namespace CADES_Plugin {
     }
 }
 
-interface CADESPluginBase extends CAPICOM.StoreLocation, CAPICOM.StoreName,
-    CAPICOM.StoreOpenMode, CAPICOM.ICertificateFindType, CADES_Plugin.LogLevel,
+interface CADESPluginBase extends Promise<never>,
+    CAPICOM.StoreLocation, CAPICOM.StoreName, CAPICOM.StoreOpenMode,
+    CAPICOM.ICertificateFindType, CADES_Plugin.LogLevel,
     CADES_Plugin.ISignedXmlUrls, CAdESCOM.CADESCOM_CONTENT_ENCODING_TYPE,
     CAdESCOM.CADESCOM_CADES_TYPE {
 
@@ -46,7 +47,7 @@ interface CADESPluginBase extends CAPICOM.StoreLocation, CAPICOM.StoreName,
     getLastError: (exception: Error) => string;
 }
 
-interface CADESPluginAsync extends CADESPluginBase, Promise<never> {
+interface CADESPluginAsync extends CADESPluginBase {
     CreateObjectAsync: <T extends keyof CADES_Plugin.ObjectNamesAsync> (objname: T) => Promise<CADES_Plugin.ObjectNamesAsync[T]>;
 }
 
