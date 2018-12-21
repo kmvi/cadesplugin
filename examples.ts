@@ -46,7 +46,7 @@ async function main(): Promise<void> {
 
 async function getCertificatesList(cadesplugin: CADESPluginAsync): Promise<void> {
     const store = await cadesplugin.CreateObjectAsync('CAPICOM.Store');
-
+    
     await store.Open(
         cadesplugin.CAPICOM_CURRENT_USER_STORE,
         cadesplugin.CAPICOM_MY_STORE,

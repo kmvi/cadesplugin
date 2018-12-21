@@ -31,13 +31,26 @@ declare namespace CADES_Plugin {
         XmlDsigGost3411Url: "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr3411";
         XmlDsigGost3411UrlObsolete: "http://www.w3.org/2001/04/xmldsig-more#gostr3411";
     }
+
+    interface IEncodingType {
+        CADESCOM_ENCODE_ANY: -1;
+        CADESCOM_ENCODE_BASE64: 0;
+        CADESCOM_ENCODE_BINARY: 1;
+    }
 }
 
 interface CADESPluginBase extends Promise<never>,
-    CAPICOM.StoreLocation, CAPICOM.StoreName, CAPICOM.StoreOpenMode,
-    CAPICOM.ICertificateFindType, CADES_Plugin.LogLevel,
-    CADES_Plugin.ISignedXmlUrls, CAdESCOM.CADESCOM_CONTENT_ENCODING_TYPE,
-    CAdESCOM.CADESCOM_CADES_TYPE {
+    CAPICOM.StoreLocationPlugin, CAdESCOM.StoreLocationPlugin, CAPICOM.StoreNamePlugin,
+    CAPICOM.StoreOpenModePlugin, CAPICOM.CAPICOM_CERTIFICATE_FIND_TYPE,
+    CADES_Plugin.LogLevel, CAdESCOM.CADESCOM_XML_SIGNATURE_TYPE,
+    CADES_Plugin.ISignedXmlUrls, CAdESCOM.CADESCOM_CADES_TYPE,
+    CADES_Plugin.IEncodingType, CAPICOM.CAPICOM_CERTIFICATE_INCLUDE_OPTION,
+    CAPICOM.CertIntoTypePlugin, CAPICOM.KeyUsagePlugin,
+    CAPICOM.PropIDPlugin, CAPICOM.OIDPlugin, CAPICOM.EKUPlugin,
+    CAPICOM.CAPICOM_ATTRIBUTE, CAdESCOM.CADESCOM_ATTRIBUTE,
+    CAdESCOM.CADESCOM_CONTENT_ENCODING_TYPE, CAdESCOM.CADESCOM_DISPLAY_DATA,
+    CAdESCOM.CADESCOM_ENCRYPTION_ALGORITHM, CAdESCOM.CADESCOM_HASH_ALGORITHM,
+    CAdESCOM.CADESCOM_InstallResponseRestrictionFlags {
 
     JSModuleVersion: string;
     current_log_level: number;
@@ -45,10 +58,12 @@ interface CADESPluginBase extends Promise<never>,
     set: (obj: CADESPluginBase) => void;
     set_log_level: (level: ValuesOf<CADES_Plugin.LogLevel>) => void;
     getLastError: (exception: Error) => string;
+    is_capilite_enabled: () => boolean;
 }
 
 interface CADESPluginAsync extends CADESPluginBase {
     CreateObjectAsync: <T extends keyof CADES_Plugin.ObjectNamesAsync> (objname: T) => Promise<CADES_Plugin.ObjectNamesAsync[T]>;
+    ReleasePluginObjects: () => Promise<boolean>;
 }
 
 interface CADESPluginSync extends CADESPluginBase {
