@@ -1,6 +1,4 @@
 declare namespace CAPICOM {
-    type VarDate = object;
-
     interface ICertificate {
         readonly Version: number;
         readonly Thumbprint: string;
@@ -20,7 +18,7 @@ declare namespace CAPICOM {
     }
 
     interface ICertificates {
-        Count: number;
+        readonly Count: number;
         Item(index: number): ICertificate;
         Find(findType: ValuesOf<CAPICOM_CERTIFICATE_FIND_TYPE>, varCriteria?: any, bFindValidOnly?: boolean): ICertificates;
         Select(title?: string, displayString?: string, bMultiSelect?: boolean): ICertificates;
@@ -31,8 +29,21 @@ declare namespace CAPICOM {
         Close(): void;
         Delete(): boolean;
         Import(encodedStore: string): void;
-        Certificates: ICertificates;
-        Location: ValuesOf<CAPICOM_STORE_LOCATION>;
-        Name: string;
+        readonly Certificates: ICertificates;
+        readonly Location: ValuesOf<CAPICOM_STORE_LOCATION>;
+        readonly Name: string;
+    }
+
+    interface Signers {
+        readonly Count: number;
+        Item(index: number): Signer;
+    }
+
+    interface Signer {
+        Load(fileName: string, password?: string): void;
+        //readonly AuthenticatedAttributes
+        Certificate: ICertificate;
+        //Chain
+        Options: CAPICOM_CERTIFICATE_INCLUDE_OPTION;
     }
 }

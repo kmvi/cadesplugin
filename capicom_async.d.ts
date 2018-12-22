@@ -1,12 +1,12 @@
 declare namespace CAPICOM {
     interface ICertificateAsync {
-        Version: Promise<number>;
-        Thumbprint: Promise<string>;
-        SubjectName: Promise<string>;
+        readonly Version: Promise<number>;
+        readonly Thumbprint: Promise<string>;
+        readonly SubjectName: Promise<string>;
     }
 
     interface ICertificatesAsync {
-        Count: Promise<number>;
+        readonly Count: Promise<number>;
         Item(index: number): Promise<ICertificateAsync>;
         Find(findType: ValuesOf<CAPICOM_CERTIFICATE_FIND_TYPE>, varCriteria?: any, bFindValidOnly?: boolean): Promise<ICertificatesAsync>;
     }
@@ -15,6 +15,6 @@ declare namespace CAPICOM {
         Open(location?: ValuesOf<CAPICOM_STORE_LOCATION>, name?: ValuesOf<CAPICOM_STORE_NAME>, openMode?: ValuesOf<CAPICOM_STORE_OPEN_MODE>): Promise<void>;
         Close(): Promise<void>;
         Delete(): Promise<boolean>;
-        Certificates: Promise<ICertificatesAsync>;
+        readonly Certificates: Promise<ICertificatesAsync>;
     }
 }
