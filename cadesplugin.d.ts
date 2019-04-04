@@ -1,5 +1,4 @@
 type ValuesOf<T> = T[keyof T];
-type VarDate = object;
 
 declare namespace CADES_Plugin {
     interface ObjectNames {
