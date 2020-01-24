@@ -2,10 +2,6 @@ function canAsync(cadesplugin: CADESPlugin): cadesplugin is CADESPluginAsync {
     return !!(cadesplugin as CADESPluginAsync).CreateObjectAsync;
 }
 
-function canSync(cadesplugin: CADESPlugin): cadesplugin is CADESPluginSync {
-    return !!(cadesplugin as CADESPluginSync).CreateObject;
-}
-
 function init(): void {
     const canPromise = !!(window as any).Promise;
     if (canPromise) {
@@ -34,7 +30,7 @@ async function main(): Promise<void> {
             const result = await SignVerify(cadesplugin, signature, 'data');
             alert(result);
         }
-    } else if (canSync(cadesplugin)) {
+    } else {
         getCertificatesListSync(cadesplugin);
         const signature = SignCreateSync(cadesplugin, '1628BD226C5BB9B56C860AFA9FE6C461D22F8DFF', 'data');
         if (signature !== null) {
