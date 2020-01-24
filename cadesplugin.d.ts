@@ -85,10 +85,6 @@ interface CADESPluginSync extends CADESPluginBase {
     CreateObject<T extends keyof CADES_Plugin.ObjectNames>(objname: T): CADES_Plugin.ObjectNames[T];
 }
 
-declare module "cadesplugin" {
-    export = cadesplugin;
-}
-
 type CADESPlugin = CADESPluginAsync | CADESPluginSync;
 
 declare const cadesplugin: CADESPlugin;

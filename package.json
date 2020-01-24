@@ -1,0 +1,29 @@
+{
+  "name": "@kmvi/cadesplugin",
+  "version": "0.2.0",
+  "description": "Type definitions for CryptoPro browser plugin",
+  "main": "",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmvi/cadesplugin.git"
+  },
+  "keywords": [
+    "cryptopro",
+    "криптопро",
+    "cadesplugin",
+    "cryptopro-browser-plugin"
+  ],
+  "author": "kmvi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kmvi/cadesplugin/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "types": "index.d.ts"
+}
