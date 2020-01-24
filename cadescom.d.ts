@@ -10,7 +10,7 @@ declare namespace CAdESCOM {
         //CRLs;
         KeyPin: string;
         //OCSPResponses
-        Options: ValuesOf<CAPICOM.CAPICOM_CERTIFICATE_INCLUDE_OPTION>;
+        Options: CAPICOM.CAPICOM_CERTIFICATE_INCLUDE_OPTION;
         //SignatureStatus
         readonly SignatureTimeStampTime: VarDate;
         readonly SigningTime: VarDate;
@@ -20,17 +20,17 @@ declare namespace CAdESCOM {
 
     interface CadesSignedData {
         Display(hwndParent?: number, title?: string): void;
-        EnhanceCades(cadesType?: ValuesOf<CADESCOM_CADES_TYPE>, TSAAddress?: string, encodingType?: ValuesOf<CAPICOM.CAPICOM_ENCODING_TYPE>): string;
+        EnhanceCades(cadesType?: CADESCOM_CADES_TYPE, TSAAddress?: string, encodingType?: CAPICOM.CAPICOM_ENCODING_TYPE): string;
         //Sign
-        SignCades(signer?: CPSigner, CadesType?: ValuesOf<CADESCOM_CADES_TYPE>, bDetached?: boolean, EncodingType?: ValuesOf<CAPICOM.CAPICOM_ENCODING_TYPE>): string;
+        SignCades(signer?: CPSigner, CadesType?: CADESCOM_CADES_TYPE, bDetached?: boolean, EncodingType?: CAPICOM.CAPICOM_ENCODING_TYPE): string;
         //SignHash
         //Verify
-        VerifyCades(SignedMessage: string, CadesType?: ValuesOf<CADESCOM_CADES_TYPE>, bDetached?: boolean): void;
+        VerifyCades(SignedMessage: string, CadesType?: CADESCOM_CADES_TYPE, bDetached?: boolean): void;
         //VerifyHash
         readonly Certificates: CAPICOM.ICertificates;
         Content: string;
-        ContentEncoding: ValuesOf<CADESCOM_CONTENT_ENCODING_TYPE>;
-        DisplayData: ValuesOf<CADESCOM_DISPLAY_DATA>;
+        ContentEncoding: CADESCOM_CONTENT_ENCODING_TYPE;
+        DisplayData: CADESCOM_DISPLAY_DATA;
         //Signers
     }
 
@@ -64,23 +64,23 @@ declare namespace CAdESCOM {
         Content: string;
         DigestMethod: string;
         SignatureMethod: string;
-        SignatureType: ValuesOf<CADESCOM_XML_SIGNATURE_TYPE>;
+        SignatureType: CADESCOM_XML_SIGNATURE_TYPE;
         readonly Signers: CAPICOM.Signers;
     }
 
     interface CPHashedData {
         Hash(newVal: string): void;
         SetHashValue(newVal: string): void;
-        Algorithm: ValuesOf<CAPICOM.CAPICOM_HASH_ALGORITHM>;
-        DataEncoding: ValuesOf<CADESCOM_CONTENT_ENCODING_TYPE>;
+        Algorithm: CAPICOM.CAPICOM_HASH_ALGORITHM;
+        DataEncoding: CADESCOM_CONTENT_ENCODING_TYPE;
         Value: string;
     }
 
     interface CPAttribute {
-        Name: ValuesOf<CADESCOM_ATTRIBUTE>;
-        //OID: ValuesOf<CAPICOM.IOID>;
+        Name: CADESCOM_ATTRIBUTE;
+        //OID: CAPICOM.IOID>;
         Value: any;
-        ValueEncoding: ValuesOf<CAPICOM.CAPICOM_ENCODING_TYPE>;
+        ValueEncoding: CAPICOM.CAPICOM_ENCODING_TYPE;
     }
 
     interface RawSignature {

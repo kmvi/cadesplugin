@@ -1,5 +1,3 @@
-type ValuesOf<T> = T[keyof T];
-
 declare namespace CADES_Plugin {
     interface ObjectNames {
         'CAPICOM.Store': CAPICOM.Store;
@@ -23,44 +21,57 @@ declare namespace CADES_Plugin {
         'CAdESCOM.RawSignature': CAdESCOM.RawSignatureAsync;
     }
 
-    interface LogLevel {
-        readonly LOG_LEVEL_DEBUG: 4;
-        readonly LOG_LEVEL_INFO: 2;
-        readonly LOG_LEVEL_ERROR: 1;
+    const enum LogLevel {
+        LOG_LEVEL_DEBUG = 4,
+        LOG_LEVEL_INFO = 2,
+        LOG_LEVEL_ERROR = 1,
     }
 
-    interface ISignedXmlUrls {
-        readonly XmlDsigGost3410Url: "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34102001-gostr3411";
-        readonly XmlDsigGost3410UrlObsolete: "http://www.w3.org/2001/04/xmldsig-more#gostr34102001-gostr3411";
-        readonly XmlDsigGost3411Url: "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr3411";
-        readonly XmlDsigGost3411UrlObsolete: "http://www.w3.org/2001/04/xmldsig-more#gostr3411";
+    const enum ISignedXmlUrls {
+        XmlDsigGost3410Url = "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34102001-gostr3411",
+        XmlDsigGost3410UrlObsolete = "http://www.w3.org/2001/04/xmldsig-more#gostr34102001-gostr3411",
+        XmlDsigGost3411Url = "urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr3411",
+        XmlDsigGost3411UrlObsolete = "http://www.w3.org/2001/04/xmldsig-more#gostr3411",
     }
 
-    interface IEncodingType {
-        readonly CADESCOM_ENCODE_ANY: -1;
-        readonly CADESCOM_ENCODE_BASE64: 0;
-        readonly CADESCOM_ENCODE_BINARY: 1;
+    const enum IEncodingType {
+        CADESCOM_ENCODE_ANY = -1,
+        CADESCOM_ENCODE_BASE64 = 0,
+        CADESCOM_ENCODE_BINARY = 1,
     }
 }
 
-interface CADESPluginBase extends Promise<never>,
-    CAPICOM.StoreLocationPlugin, CAdESCOM.StoreLocationPlugin, CAPICOM.StoreNamePlugin,
-    CAPICOM.StoreOpenModePlugin, CAPICOM.CAPICOM_CERTIFICATE_FIND_TYPE,
-    CADES_Plugin.LogLevel, CAdESCOM.CADESCOM_XML_SIGNATURE_TYPE,
-    CADES_Plugin.ISignedXmlUrls, CAdESCOM.CADESCOM_CADES_TYPE,
-    CADES_Plugin.IEncodingType, CAPICOM.CAPICOM_CERTIFICATE_INCLUDE_OPTION,
-    CAPICOM.CertIntoTypePlugin, CAPICOM.KeyUsagePlugin,
-    CAPICOM.PropIDPlugin, CAPICOM.OIDPlugin, CAPICOM.EKUPlugin,
-    CAPICOM.CAPICOM_ATTRIBUTE, CAdESCOM.CADESCOM_ATTRIBUTE,
-    CAdESCOM.CADESCOM_CONTENT_ENCODING_TYPE, CAdESCOM.CADESCOM_DISPLAY_DATA,
-    CAdESCOM.CADESCOM_ENCRYPTION_ALGORITHM, CAdESCOM.CADESCOM_HASH_ALGORITHM,
-    CAdESCOM.CADESCOM_InstallResponseRestrictionFlags {
+type _CADESPluginBase = Promise<never>
+    & Readonly<Pick<typeof CAPICOM.CAPICOM_STORE_LOCATION, CAPICOM.StoreLocationPluginNames>>
+    & Readonly<Pick<typeof CAPICOM.CAPICOM_STORE_NAME, CAPICOM.StoreNamePluginNames>>
+    & Readonly<Pick<typeof CAPICOM.CAPICOM_STORE_OPEN_MODE, CAPICOM.StoreOpenModePluginNames>>
+    & Readonly<Pick<typeof CAPICOM.CAPICOM_CERT_INFO_TYPE, CAPICOM.CertIntoTypePluginNames>>
+    & Readonly<Pick<typeof CAPICOM.CAPICOM_KEY_USAGE, CAPICOM.KeyUsagePluginNames>>
+    & Readonly<Pick<typeof CAPICOM.CAPICOM_PROPID, CAPICOM.PropIDPluginNames>>
+    & Readonly<Pick<typeof CAPICOM.CAPICOM_OID, CAPICOM.OIDPluginNames>>
+    & Readonly<Pick<typeof CAPICOM.CAPICOM_EKU, CAPICOM.EKUPluginNames>>
+    & Readonly<Pick<typeof CAdESCOM.CADESCOM_STORE_LOCATION, CAdESCOM.StoreLocationPluginNames>>
+    & Readonly<typeof CAPICOM.CAPICOM_CERTIFICATE_FIND_TYPE>
+    & Readonly<typeof CAPICOM.CAPICOM_CERTIFICATE_INCLUDE_OPTION>
+    & Readonly<typeof CAPICOM.CAPICOM_ATTRIBUTE>
+    & Readonly<typeof CAdESCOM.CADESCOM_CADES_TYPE>
+    & Readonly<typeof CAdESCOM.CADESCOM_XML_SIGNATURE_TYPE>
+    & Readonly<typeof CAdESCOM.CADESCOM_ATTRIBUTE>
+    & Readonly<typeof CAdESCOM.CADESCOM_CONTENT_ENCODING_TYPE>
+    & Readonly<typeof CAdESCOM.CADESCOM_DISPLAY_DATA>
+    & Readonly<typeof CAdESCOM.CADESCOM_ENCRYPTION_ALGORITHM>
+    & Readonly<typeof CAdESCOM.CADESCOM_HASH_ALGORITHM>
+    & Readonly<typeof CAdESCOM.CADESCOM_InstallResponseRestrictionFlags>
+    & Readonly<typeof CADES_Plugin.LogLevel>
+    & Readonly<typeof CADES_Plugin.ISignedXmlUrls>
+    & Readonly<typeof CADES_Plugin.IEncodingType>;
 
+interface CADESPluginBase extends _CADESPluginBase {
     readonly JSModuleVersion: string;
     readonly current_log_level: number;
     async_spawn<T>(generatorFun: (...args: any[]) => Iterator<T>): T;
     set(obj: CADESPluginBase): void;
-    set_log_level(level: ValuesOf<CADES_Plugin.LogLevel>): void;
+    set_log_level(level: CADES_Plugin.LogLevel): void;
     getLastError(exception: Error): string;
     is_capilite_enabled(): boolean;
 }
